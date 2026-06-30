@@ -6,7 +6,13 @@ st.set_page_config(page_title="Westford 2050 Energy Hub", layout="wide")
 st.title("Westford 2050: AI-Powered Community Energy Hub")
 st.write("A simple simulator showing how AI can manage clean energy, batteries, and community demand.")
 
-data = pd.read_csv("data/sample_energy_data.csv")
+data = pd.DataFrame({
+    "hour": [6, 9, 12, 15, 18, 21],
+    "solar_kw": [100, 600, 1100, 900, 300, 0],
+    "wind_kw": [220, 180, 150, 200, 260, 300],
+    "town_demand_kw": [1200, 1700, 1900, 2100, 2300, 1800],
+    "data_center_kw": [500, 700, 900, 850, 950, 700]
+})
 
 st.subheader("Energy Forecast")
 st.line_chart(
@@ -46,6 +52,7 @@ else:
 st.success(decision)
 
 st.subheader("Estimated Impact")
+
 col5, col6, col7 = st.columns(3)
 
 col5.metric("Carbon Savings", "38%")
